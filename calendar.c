@@ -129,7 +129,7 @@ int numberOfDays(int monthNumber, int year)
   
 // Function to print the calendar of
 // the given year
-void printCalendar(int year)
+void printCalendar(int year, int month, char path[])
 {
     printf("     Calendar - %d\n\n", year);
     int days;
@@ -140,12 +140,11 @@ void printCalendar(int year)
     // i for Iterate through months
     // j for Iterate through days
     // of the month - i
-    for (int i = 0; i < 12; i++) {
-        days = numberOfDays(i, year);
+        days = numberOfDays(month, year);
   
         // Print the current month name
-        printf("\n ------------%s-------------\n",
-               getMonthName(i));
+        printf("\n ------------%s ", getMonthName(month));
+        printf("%d-------------\n", year);
   
         // Print the columns
         printf(" Sun   Mon  Tue  Wed  Thu  Fri  Sat\n");
@@ -168,18 +167,39 @@ void printCalendar(int year)
             printf("\n");
   
         current = k;
-    }
+        
+    //   int num;
+    //   FILE *fptr;
+    
+    //   // use appropriate location if you are using MacOS or Linux
+    //   fptr = fopen("calendar.txt","w");
+    
+    //   if(fptr == NULL)
+    //   {
+    //       printf("Error!");   
+    //       exit(1);             
+    //   }
+    
+    //   printf("Saving file");
+    //   scanf("%d",&num);
+    
+    //   fprintf(fptr,"%d",num);
+    //   fclose(fptr);
   
     return;
 }
   
 // Driver Code
-int main()
+int main(int argc, char *argv[])
 {
-    int year = 2022;
-    s
+    int year;
+    int month;
+    printf("Saisissez l\' année pour le calendrier : ");
+    scanf("%d", &year);
+    printf("Saisissez le mois du calendrier , 1−12: ");
+    scanf("%d", &month);
   
     // Function Call
-    printCalendar(year);
+    printCalendar(year, month - 1, argv[0]);
     return 0;
 }
